@@ -8,7 +8,12 @@ abstract class Personaje{
 }
 class Guerrero extends Personaje{
     public String habilidades;
-    public boolean ataque(){ return false; }
+    public boolean ataque(){ 
+        //return ( ((int) Math.random() * 2) == 1) ? true : false ;
+        int numero = (int) Math.random() * 2;
+        boolean gana = (numero == 1) ? true : false ;
+        return gana; 
+    }
     public int defensa() { return 0; }
 }
 class Majo extends Personaje{
