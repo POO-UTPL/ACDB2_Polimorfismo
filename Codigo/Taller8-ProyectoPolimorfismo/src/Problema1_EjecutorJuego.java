@@ -9,8 +9,10 @@ public class Problema1_EjecutorJuego {
         guerrero.ataque(mago);
         System.out.println(guerrero);
         System.out.println(mago);
+        guerrero.ataque(mago);
+        System.out.println(guerrero);
+        System.out.println(mago);
     }
-    
 }
 abstract class Personaje{
     public int vidas, experiencia, batallasGanadas;
@@ -28,11 +30,12 @@ class Guerrero extends Personaje{
         this.habilidades = habilidades; }
     public boolean ataque(Personaje personaje){ 
         //return ( ((int) Math.random() * 2) == 1) ? true : false ;
-        int numero = (int) Math.random() * 2;
+        int numero = (int) (Math.random() * 2);
         boolean gana = (numero == 1) ? true : false ;
         if (gana){
             this.experiencia += 1;
             this.batallasGanadas += 1;
+            personaje.vidas -=1 ;
         }
         else{
             this.vidas -= 1;
