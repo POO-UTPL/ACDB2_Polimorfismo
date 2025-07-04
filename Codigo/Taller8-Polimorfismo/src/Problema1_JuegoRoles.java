@@ -1,22 +1,42 @@
 public class Problema1_JuegoRoles {
+    static Personaje guerrero;
+    static Personaje mago;
+    static Personaje arquero;
     public static void main(String[] args) {
-        
+        guerrero = new Guerrero();
+        mago = new Mago();
+        boolean gana = guerrero.ataque(mago);
+        if(gana){
+            guerrero.experiencia +=1;
+            guerrero.batallasGana +=1;
+            mago.vidas -=1;
+        }   
+        else {
+            mago.experiencia +=1;
+            mago.batallasGana +=1;
+            guerrero.vidas -=1;
+        }
+        System.out.println("GUERRRO: " + guerrero + " MAGO: " + mago);
     }
 }
 abstract class Personaje{
     public int vidas, experiencia, batallasGana;
     public abstract boolean ataque(Personaje personaje);
     public abstract int defensa();
+    public String toString() {
+        return "Personaje{" + "vidas=" + vidas + ", experiencia=" + experiencia + ", batallasGana=" + batallasGana + '}';}
 }
 class Guerrero extends Personaje{
     public String habilidades;
     public boolean ataque(Personaje personaje) { 
         //return ((int) (Math.random() * 1) == 1) ? true : false;
-        int bandera = (int) (Math.random() * 1);
+        int bandera = (int) (Math.random() * 2);
         boolean gana = (bandera == 1) ? true : false;
         return gana;
     } 
     public int defensa() { return 0;}
+    public String toString() {
+        return "Guerrero{" + "habilidades=" + habilidades + '}' + super.toString(); }
 }
 class Mago extends Personaje{
     public String estrategia;
